@@ -23,7 +23,7 @@ function Login() {
         try {
             const session = await axios({
                 method: 'POST',
-                url:'/api/v1/users/login',
+                url:'https://playtube-app-backend.onrender.com/api/v1/users/login',
                 data: {
                     'email': data.email,
                     'password': data.password
@@ -31,7 +31,7 @@ function Login() {
             })      
 
             if (session) {
-                const userData  = await axios.get('/api/v1/users/current-user')
+                const userData  = await axios.get('https://playtube-app-backend.onrender.com/api/v1/users/current-user')
                 if(userData){
                     dispatch(authLogin(userData.data))
                 }
