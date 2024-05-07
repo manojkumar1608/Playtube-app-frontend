@@ -19,7 +19,7 @@ function Signup() {
         try {
             const userData = await axios({
                 method: 'POST',
-                url:'/api/v1/users/register',
+                url:'https://playtube-app-backend.onrender.com/api/v1/users/register',
                 data:{
                     'username': data.username,
                     'fullName': data.fullName,
