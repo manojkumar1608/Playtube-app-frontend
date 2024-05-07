@@ -31,7 +31,10 @@ function Login() {
             })      
 
             if (session) {
-                const userData  = await axios.get('https://playtube-app-backend.onrender.com/api/v1/users/current-user')
+                const userData  = await axios({
+                    url:'https://playtube-app-backend.onrender.com/api/v1/users/current-user',
+                method: 'GET'
+            })
                 if(userData){
                     dispatch(authLogin(userData.data))
                 }
