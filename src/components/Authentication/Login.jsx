@@ -27,7 +27,8 @@ function Login() {
                 data: {
                     'email': data.email,
                     'password': data.password
-                }
+                },
+                withCredentials: true
             })      
 
             if (session) {
