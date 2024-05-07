@@ -19,7 +19,7 @@ function Signup() {
         try {
             const userData = await axios({
                 method: 'POST',
-                url:'http://localhost:8000/api/v1/users/register',
+                url:'/api/v1/users/register',
                 data:{
                     'username': data.username,
                     'fullName': data.fullName,
@@ -37,7 +37,7 @@ function Signup() {
                 navigate("/login")
             }
         } catch (error) {
-            setError(error.response.status)
+            setError("error")
         }
     }
     if(error && error === 409){
