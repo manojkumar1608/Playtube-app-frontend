@@ -28,9 +28,8 @@ function Login() {
                     'email': data.email,
                     'password': data.password
                 },
-                withCredentials: true
             })      
-            
+
 
             if (session) {
                 const userData  = await axios({
