@@ -13,7 +13,7 @@ function HomePage() {
 
         async function getVideos() {
             try {
-                const response = await axios.get(`https://playtube-app-frontend.vercel.app/api/v1/videos?page=${currentPage}`);
+                const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/videos?page=${currentPage}`);
                 const videodata = response.data.data;
                 if (videodata) {
                     setVideos((prevVideos) => {
