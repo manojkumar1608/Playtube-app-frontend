@@ -35,7 +35,6 @@ function Login() {
                 const userData  = await axios({
                     url:'https://playtube-app-backend.onrender.com/api/v1/users/current-user',
                 method: 'GET',
-                withCredentials: true
             })
                 if(userData){
                     dispatch(authLogin(userData.data))
