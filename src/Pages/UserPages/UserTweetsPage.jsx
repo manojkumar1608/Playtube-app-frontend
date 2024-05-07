@@ -11,7 +11,7 @@ function Tweets({ channelData }) {
   useEffect(() => {
     async function getUserTweets() {
       try {
-        const response = await axios.get(`/api/v1/tweets/user/${channelData._id}`)
+        const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/tweets/user/${channelData._id}`)
         const tweetsData = response.data.data
 
         if (tweetsData) {

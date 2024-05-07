@@ -14,7 +14,7 @@ function VideoCard({ _id, title, thumbnail, owner, views, createdAt, updatedAt ,
     if (owner) {
       axios({
         method: 'POST',
-        url: '/api/v1/users/getuserbyId',
+        url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
         data: {
           userId: owner
         }

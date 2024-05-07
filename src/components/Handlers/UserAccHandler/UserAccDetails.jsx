@@ -21,7 +21,7 @@ function UserAccDetails({ channelData }) {
     const Submit = async (data) => {
         const response = await axios({
             method: 'PATCH',
-            url: '/api/v1/users/update-account',
+            url: 'https://playtube-app-backend.onrender.com/api/v1/users/update-account',
             data: {
                 'username': data.username,
                 'fullName': data.fullName,

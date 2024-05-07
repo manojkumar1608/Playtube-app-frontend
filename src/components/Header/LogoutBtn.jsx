@@ -8,7 +8,7 @@ function  LogoutBtn() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
     const logoutHandler = async()=>{
-      const res = await axios.post('/api/v1/users/logout')
+      const res = await axios.post('https://playtube-app-backend.onrender.com/api/v1/users/logout')
       if(res)
         dispatch(authlogout())
       navigate('/')

@@ -23,7 +23,7 @@ function CommentLikeHandler({ comment }) {
             if (comment) {
                 axios({
                     method: 'GET',
-                    url: `/api/v1/likes/commentlikes/${comment._id}`
+                    url: `https://playtube-app-backend.onrender.com/api/v1/likes/commentlikes/${comment._id}`
                 }).then(response => {
                     setCommentLikes(response.data.data)
                     if (userData) {
@@ -51,7 +51,7 @@ function CommentLikeHandler({ comment }) {
         setError("")
         try {
             if (comment._id) {
-                await axios.post(`/api/v1/likes/toggle/c/${comment._id}`)
+                await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/c/${comment._id}`)
                     .then(response => {
                         setChange(response.data.data)
                     })
@@ -77,7 +77,7 @@ function CommentLikeHandler({ comment }) {
             setDisLike(disLike = !disLike)
         }
         if (Like.length > 0) {
-            await axios.post(`/api/v1/likes/toggle/c/${comment._id}`)
+            await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/c/${comment._id}`)
                 .then(response => {
                     setChange(response.data.data)
                 })

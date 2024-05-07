@@ -22,7 +22,7 @@ function FollowHandler({ video }) {
             if (owner) {
                 axios({
                     method: 'POST',
-                    url: '/api/v1/users/getuserbyId',
+                    url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
                     data: {
                         userId: owner
                     }
@@ -34,7 +34,7 @@ function FollowHandler({ video }) {
             if (video) {
                 const response = await axios({
                     method: 'POST',
-                    url: `/api/v1/subscriptions/u/:subscriberId}`,
+                    url: `https://playtube-app-backend.onrender.com/api/v1/subscriptions/u/:subscriberId}`,
                     data: {
                         'channelId': video.owner
                     }
@@ -57,7 +57,7 @@ function FollowHandler({ video }) {
             if (video) {
                 const response = await axios({
                     method: 'POST',
-                    url: `/api/v1/subscriptions/s/:channelId}`,
+                    url: `https://playtube-app-backend.onrender.com/api/v1/subscriptions/s/:channelId}`,
                     data: {
                         'channelId': video.owner
                     }
@@ -72,7 +72,7 @@ function FollowHandler({ video }) {
     const ToggleFollowBtn = async () => {
         try {
             if(userData){
-            const response = await axios.post(`/api/v1/subscriptions/c/${video.owner}`)
+            const response = await axios.post(`https://playtube-app-backend.onrender.com/api/v1/subscriptions/c/${video.owner}`)
             setSubscribed(response.data.data)
             setUpdate(response.data.data)
             }else{
@@ -84,7 +84,7 @@ function FollowHandler({ video }) {
     }
 
     const deleteVideo = () => {
-        axios.delete(`/api/v1/videos/${video._id}`)
+        axios.delete(`https://playtube-app-backend.onrender.com/api/v1/videos/${video._id}`)
             .then((status) => {
                 if (status) {
                     navigate("/");

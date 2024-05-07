@@ -31,7 +31,7 @@ function UploadVideo({ video }) {
             if (video) {
                 const file = data.thumbnail[0] ? await axios({
                     method: "PATCH",
-                    url: `/api/v1/videos/${video.video._id}`,
+                    url: `https://playtube-app-backend.onrender.com/api/v1/videos/${video.video._id}`,
                     data: {
                         'title': data.title,
                         'description': data.description,
@@ -49,7 +49,7 @@ function UploadVideo({ video }) {
             } else {
                 const videoData = await axios({
                     method: 'POST',
-                    url: '/api/v1/videos/',
+                    url: 'https://playtube-app-backend.onrender.com/api/v1/videos/',
                     data: {
                         'title': data.title,
                         'description': data.description,

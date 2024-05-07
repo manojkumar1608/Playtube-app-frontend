@@ -24,7 +24,7 @@ function WatchPage() {
     if (videoId) {
       axios({
         method: 'GET',
-        url: `/api/v1/videos/${videoId}`,
+        url: `https://playtube-app-backend.onrender.com/api/v1/videos/${videoId}`,
       }).then((response) => {
         if (response) {
           const videoData = response.data.data.video
@@ -40,7 +40,7 @@ function WatchPage() {
     }
     //updating video views// 
     if (userData && videoId) {
-      axios.post(`/api/v1/videos/toggle/views/${videoId}`)
+      axios.post(`https://playtube-app-backend.onrender.com/api/v1/videos/toggle/views/${videoId}`)
         .then((response) => {
         }).catch((error) => {
           setError("Failed to toggle", error)

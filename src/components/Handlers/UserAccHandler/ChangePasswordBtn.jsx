@@ -11,7 +11,7 @@ function ChangePasswordBtn() {
     const Submit = async (data) => {
         const response = await axios({
             method: 'POST',
-            url: '/api/v1/users/change-password',
+            url: 'https://playtube-app-backend.onrender.com/api/v1/users/change-password',
             data: {
                 'oldPassword': data.oldPassword,
                 'newPassword': data.newPassword,

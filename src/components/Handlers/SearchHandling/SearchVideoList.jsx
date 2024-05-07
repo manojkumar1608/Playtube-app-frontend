@@ -15,7 +15,7 @@ const SearchResults = () => {
     // Example API call to fetch search results based on the query
     const fetchSearchResults = async () => {
       try {
-        const response = await axios.get(`/api/v1/videos/search?query=${query}`);
+        const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/videos/search?query=${query}`);
         console.log(response)
         const data = response.data.data
         setSearchResults(data);

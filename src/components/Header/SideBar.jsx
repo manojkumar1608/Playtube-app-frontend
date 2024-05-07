@@ -31,7 +31,7 @@ function SideBar() {
         try {
           const response = await axios({
             method: 'POST',
-            url: '/api/v1/subscriptions/s/:channelId',
+            url: 'https://playtube-app-backend.onrender.com/api/v1/subscriptions/s/:channelId',
             data: {
               'channelId': userData.data._id
             }

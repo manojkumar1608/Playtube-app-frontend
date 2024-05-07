@@ -28,7 +28,7 @@ function CommentsHandler({ video }) {
             if (video) {
                 axios({
                     method: 'GET',
-                    url: `/api/v1/comments/${video._id}`
+                    url: `https://playtube-app-backend.onrender.com/api/v1/comments/${video._id}`
                 }).then(response => {
                     setVideoComments(response.data.data.Comments)
                     if (userData) {
@@ -78,7 +78,7 @@ function CommentsHandler({ video }) {
 
             const commentData = await axios({
                 method: 'POST',
-                url: `/api/v1/comments/${video._id}`,
+                url: `https://playtube-app-backend.onrender.com/api/v1/comments/${video._id}`,
                 data: {
                     'content': data.content
                 },

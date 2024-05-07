@@ -15,7 +15,7 @@ function Videos({channelData}) {
             try {
                 const response = await axios({
                     method: 'POST',
-                    url:'/api/v1/videos/user',
+                    url:'https://playtube-app-backend.onrender.com/api/v1/videos/user',
                     data:{
                         'userId': channelData._id
                     }

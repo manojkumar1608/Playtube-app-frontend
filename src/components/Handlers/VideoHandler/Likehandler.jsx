@@ -24,7 +24,7 @@ function Likehandler({ video }) {
       if (video) {
         axios({
           method: 'GET',
-          url: `/api/v1/likes/likes/${video._id}`
+          url: `https://playtube-app-backend.onrender.com/api/v1/likes/likes/${video._id}`
         }).then(response => {
           setvideoLikes(response.data.data)
           if (userData) {
@@ -52,7 +52,7 @@ function Likehandler({ video }) {
     setError("")
     try {
       if (video._id) {
-        await axios.post(`/api/v1/likes/toggle/v/${video._id}`)
+        await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/v/${video._id}`)
           .then(response => {
             setChange(response.data.data)
           })
@@ -78,7 +78,7 @@ function Likehandler({ video }) {
       setDisLike(disLike = !disLike)
     }
     if (Like.length > 0) {
-      await axios.post(`/api/v1/likes/toggle/v/${video._id}`)
+      await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/v/${video._id}`)
         .then(response => {
           setChange(response.data.data)
         })

@@ -32,7 +32,7 @@ function YourAccount() {
       try {
         const channelData = await axios({
           method: 'POST',
-          url: '/api/v1/users/c/username',
+          url: 'https://playtube-app-backend.onrender.com/api/v1/users/c/username',
           data: {
             'userId': cuurentuser?.data._id,// to check cureent user is following the channel or not
             'username': username

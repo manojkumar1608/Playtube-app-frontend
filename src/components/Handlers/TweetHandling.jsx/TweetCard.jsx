@@ -25,7 +25,7 @@ function TweetCard({ tweet, onUpdate, onDelete }) {
     if (owner) {
       axios({
         method: 'POST',
-        url: '/api/v1/users/getuserbyId',
+        url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
         data: {
           userId: owner
         }
@@ -47,7 +47,7 @@ function TweetCard({ tweet, onUpdate, onDelete }) {
     if (tweet) {
       const tweetData = await axios({
         method: 'PATCH',
-        url: `/api/v1/tweets/${tweet._id}`,
+        url: `https://playtube-app-backend.onrender.com/api/v1/tweets/${tweet._id}`,
         data: {
           'newContent': data.tweetContent
         }

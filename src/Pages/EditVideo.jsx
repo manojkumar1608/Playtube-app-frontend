@@ -10,7 +10,7 @@ function EditVideo() {
     if (videoId) {
       axios({
         method: 'GET',
-        url: `/api/v1/videos/${videoId}`,
+        url: `https://playtube-app-backend.onrender.com/api/v1/videos/${videoId}`,
 
       }).then((response) => {
         const videoData = response.data.data

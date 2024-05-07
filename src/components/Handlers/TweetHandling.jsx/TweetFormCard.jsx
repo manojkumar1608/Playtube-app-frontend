@@ -33,7 +33,7 @@ const TweetFormCard = () => {
      try {
        const tweetdata = await axios({
          method: 'POST',
-         url: '/api/v1/tweets/',
+         url: 'https://playtube-app-backend.onrender.com/api/v1/tweets/',
          data: {
            'content': data.tweetContent
          }

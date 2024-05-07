@@ -16,7 +16,7 @@ function UserHomePage({ channelData }) {
             try {
                 const response = await axios({
                     method: 'POST',
-                    url: '/api/v1/videos/user',
+                    url: 'https://playtube-app-backend.onrender.com/api/v1/videos/user',
                     data: {
                         'userId': channelData?._id
                     }
@@ -32,7 +32,7 @@ function UserHomePage({ channelData }) {
         getuservideos()
         async function getUserTweets() {
             try {
-                const response = await axios.get(`/api/v1/tweets/user/${channelData._id}`)
+                const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/tweets/user/${channelData._id}`)
                 const tweetsData = response.data.data
 
                 if (tweetsData) {

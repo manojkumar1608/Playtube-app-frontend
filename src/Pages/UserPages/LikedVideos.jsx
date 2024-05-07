@@ -16,7 +16,7 @@ function LikedVideos() {
         async function getLikedVideos() {
             try {
                 if(userData){
-                    const response = await axios.get('/api/v1/likes/L/videos')
+                    const response = await axios.get('https://playtube-app-backend.onrender.com/api/v1/likes/L/videos')
                 
                 if(response){
                     const videos = response.data.data.videos

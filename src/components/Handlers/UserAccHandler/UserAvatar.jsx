@@ -25,7 +25,7 @@ function UserAvatar({ channelData }) {
   const Submit = async (data) => {
     const response = await axios({
       method: 'PATCH',
-      url: '/api/v1/users/avatar',
+      url: 'https://playtube-app-backend.onrender.com/api/v1/users/avatar',
       data: {
         'avatarfile': data.avatar[0]
       },

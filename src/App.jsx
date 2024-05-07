@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     setError('')
-    axios.get('/api/v1/users/current-user')
+    axios.get('https://playtube-app-backend.onrender.com/api/v1/users/current-user')
     .then((userData) => {
       if (userData) {
         dispatch(login(userData.data))
@@ -34,7 +34,7 @@ function App() {
   
   const RefreshAccessToken = async () => {
     try {
-        const response = await axios.post('/api/v1/users/refresh-token', {
+        const response = await axios.post('https://playtube-app-backend.onrender.com/api/v1/users/refresh-token', {
           refreshToken: localStorage.getItem('refreshToken')
         });
 

@@ -18,7 +18,7 @@ const Search = () => {
     const HandleSearch = async (value) => {
         if (value.trim() !== '') {
             try {
-                const response = await axios.get(`/api/v1/videos/suggestions?query=${value}`);
+                const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/videos/suggestions?query=${value}`);
                 const data = response.data.data
                 setSuggestions(data);
                 

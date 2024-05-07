@@ -24,7 +24,7 @@ function TweetsPage() {
     useEffect(() => {
         async function gettweets() {
             try {
-                const response = await axios.get(`/api/v1/tweets?page=${currentPage}`)
+                const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/tweets?page=${currentPage}`)
                 const tweetsData = response.data.data
                 if (tweetsData) {
                     settweets((prevTweets) => {

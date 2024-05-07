@@ -16,7 +16,7 @@ function FollowingVideosPage() {
       try {
         const response = await axios({
           method: 'POST',
-          url: '/api/v1/subscriptions/s/:channelId',
+          url: 'https://playtube-app-backend.onrender.com/api/v1/subscriptions/s/:channelId',
           data: {
             'channelId': userData.data._id
           }
@@ -26,7 +26,7 @@ function FollowingVideosPage() {
           const map = Following.map((follow) => (
             axios({
               method: 'POST',
-              url: '/api/v1/videos/user',
+              url: 'https://playtube-app-backend.onrender.com/api/v1/videos/user',
               data: {
                 'userId': follow._id
               }

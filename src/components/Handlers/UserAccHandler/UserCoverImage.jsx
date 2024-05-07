@@ -26,7 +26,7 @@ function UserCoverImage({ channelData }) {
     const Submit = async (data) => {
         const response = await axios({
             method: 'PATCH',
-            url: '/api/v1/users/cover-Image',
+            url: 'https://playtube-app-backend.onrender.com/api/v1/users/cover-Image',
             data: {
                 'coverImagefile': data.coverImage[0]
             },

@@ -26,7 +26,7 @@ function CommentCard({ comment }) {
     if (owner) {
       axios({
         method: 'POST',
-        url: '/api/v1/users/getuserbyId',
+        url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
         data: {
           userId: owner
         }
@@ -48,7 +48,7 @@ function CommentCard({ comment }) {
     if (comment) {
       const commentData = await axios({
         method: 'PATCH',
-        url: `/api/v1/comments/c/${comment._id}`,
+        url: `https://playtube-app-backend.onrender.com/api/v1/comments/c/${comment._id}`,
         data: {
           'newContent': data.content
         }
@@ -62,7 +62,7 @@ function CommentCard({ comment }) {
     }
   }
   const deleteHandler = async () => {
-    const deletedata = await axios.delete(`/api/v1/comments/c/${comment._id}`)
+    const deletedata = await axios.delete(`https://playtube-app-backend.onrender.com/api/v1/comments/c/${comment._id}`)
     dispatch(load(deletedata.data))
   }
 
