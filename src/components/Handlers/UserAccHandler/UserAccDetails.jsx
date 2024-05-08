@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Input from '../../utilities/Input';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-function UserAccDetails({ channelData }) {
+function UserAccDetails({ channelData , onUpdate}) {
     const { register, handleSubmit } = useForm({
         defaultValues: {
             username: channelData?.username,
@@ -27,6 +27,7 @@ function UserAccDetails({ channelData }) {
                 'fullName': data.fullName,
                 'email': data.email
             },
+            withCredentials: true
           
         })
         if (response) {
@@ -34,7 +35,7 @@ function UserAccDetails({ channelData }) {
                 setShowModal(false)
                 const username = response.data.data.username
                 navigate(`/user/${username}`)
-                window.location.reload()
+                onUpdate(response.data.data)
         }
         }
     }

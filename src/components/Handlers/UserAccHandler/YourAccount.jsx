@@ -34,9 +34,10 @@ function YourAccount() {
           method: 'POST',
           url: 'https://playtube-app-backend.onrender.com/api/v1/users/c/username',
           data: {
-            'userId': cuurentuser?.data._id,// to check cureent user is following the channel or not
+            'userId': cuurentuser?.data._id,// to check current user is following the channel or not
             'username': username
-          }
+          },
+          withCredentials:true
         })
         if (channelData) {
           setChannelData(channelData.data.data)
@@ -56,10 +57,20 @@ function YourAccount() {
 
   }, [update , username])
 
+  const HandleUpdate = (update) =>{ // for updating avatar , coverImage and useraccount details(username,email,fullname)
+    setUpdate(update)
+  }
+
   const ToggleFollowBtn = async () => {
-    const response = await axios.post(`/api/v1/subscriptions/c/${channelData?._id}`)
+    const response = await axios({
+      method: 'POST',
+      url: `https://playtube-app-backend.onrender.com/api/v1/subscriptions/c/${channelData?._id}`,
+      withCredentials: true
+  });
+  if(response){
     setUpdate(response.data.data)
   }
+}
 
   return loading ?(
     <LoadingUserChannel/>
@@ -69,14 +80,14 @@ function YourAccount() {
       <div>
         {error && <p className='text-center text-3xl font-bold'>{error}</p>}
       
-      <UserCoverImage channelData={channelData} />
+      <UserCoverImage channelData={channelData} onUpdate={HandleUpdate}/>
       
       <div className='flex flex-row w-1/2 mx-11 p-1 justify-start '>
 
-        <UserAvatar channelData={channelData} />
+        <UserAvatar channelData={channelData} onUpdate={HandleUpdate}/>
 
         <div className='mt-6 '>
-          <UserAccDetails channelData={channelData} />
+          <UserAccDetails channelData={channelData} onUpdate={HandleUpdate} />
           {
             channelData?._id === cuurentuser?.data._id ? (
               <div className='mx-1.5'>

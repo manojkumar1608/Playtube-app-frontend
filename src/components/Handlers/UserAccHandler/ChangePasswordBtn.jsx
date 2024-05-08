@@ -16,6 +16,7 @@ function ChangePasswordBtn() {
                 'oldPassword': data.oldPassword,
                 'newPassword': data.newPassword,
             },
+            withCredentials: true
 
         })
         if (response) {

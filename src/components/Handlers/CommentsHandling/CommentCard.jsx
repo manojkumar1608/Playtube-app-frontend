@@ -29,7 +29,8 @@ function CommentCard({ comment }) {
         url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
         data: {
           userId: owner
-        }
+        },
+        withCredentials: true
       }).then((response) => {
         if (response) {
           const userData = response.data.data
@@ -51,10 +52,10 @@ function CommentCard({ comment }) {
         url: `https://playtube-app-backend.onrender.com/api/v1/comments/c/${comment._id}`,
         data: {
           'newContent': data.content
-        }
+        },
+        withCredentials: true
       })
       if (commentData) {
-        // setUpdate(commentData.data)
         reset()
         setedit(false)
         dispatch(load(commentData.data))
@@ -62,7 +63,11 @@ function CommentCard({ comment }) {
     }
   }
   const deleteHandler = async () => {
-    const deletedata = await axios.delete(`https://playtube-app-backend.onrender.com/api/v1/comments/c/${comment._id}`)
+    const deletedata = await axios({
+      method: 'DELETE',
+      url: `https://playtube-app-backend.onrender.com/api/v1/comments/c/${comment._id}`,
+      withCredentials: true
+  })
     dispatch(load(deletedata.data))
   }
 

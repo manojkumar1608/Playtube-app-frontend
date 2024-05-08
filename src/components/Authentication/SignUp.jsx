@@ -30,7 +30,8 @@ function Signup() {
                 },
                 headers:{
                     'Content-Type': 'multipart/form-data'
-                }
+                },
+                withCredentials: true, 
             })
             if (userData) {
                 dispatch(login(userData.data));

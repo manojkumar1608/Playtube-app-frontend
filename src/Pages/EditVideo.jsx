@@ -11,6 +11,7 @@ function EditVideo() {
       axios({
         method: 'GET',
         url: `https://playtube-app-backend.onrender.com/api/v1/videos/${videoId}`,
+        withCredentials: true
 
       }).then((response) => {
         const videoData = response.data.data

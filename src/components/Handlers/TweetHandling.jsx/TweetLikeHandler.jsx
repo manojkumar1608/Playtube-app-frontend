@@ -23,7 +23,8 @@ function TweetlikeHandler({ tweet }) {
             if (tweet) {
                 axios({
                     method: 'GET',
-                    url: `https://playtube-app-backend.onrender.com/api/v1/likes/tweetlikes/${tweet._id}`
+                    url: `https://playtube-app-backend.onrender.com/api/v1/likes/tweetlikes/${tweet._id}`,
+                    withCredentials: true
                 }).then(response => {
                     setTweetLikes(response.data.data)
                     if (userData) {
@@ -51,7 +52,11 @@ function TweetlikeHandler({ tweet }) {
         setError("")
         try {
             if (tweet._id) {
-                await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`)
+                await axios({
+                    method: "POST",
+                    url: `https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`,
+                    withCredentials: true
+            })
                     .then(response => {
                         const res = response.data.data
                         setChange(res)
@@ -78,7 +83,11 @@ function TweetlikeHandler({ tweet }) {
             setDisLike(disLike = !disLike)
         }
         if (Like.length > 0) {
-            await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`)
+            await axios({
+                method: "POST",
+                url: `https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`,
+                withCredentials: true
+            })
                 .then(response => {
                     setChange(response.data.data)
                 })

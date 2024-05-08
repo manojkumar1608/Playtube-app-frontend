@@ -5,7 +5,7 @@ import { RiImageEditFill } from "react-icons/ri";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-function UserCoverImage({ channelData }) {
+function UserCoverImage({ channelData, onUpdate }) {
     const { register, handleSubmit } = useForm()
     const cuurentuser = useSelector((state) => state.auth.userData)
     const coverImage = channelData?.coverImage.url;
@@ -32,12 +32,13 @@ function UserCoverImage({ channelData }) {
             },
             headers: {
                 'Content-Type': 'multipart/form-data'
-            }
+            },
+            withCredentials: true,
         })
         if (response) {
-            console.log(response);
             setShowModal(false)
-            window.location.reload()
+            onUpdate(response.data.data)
+            
         }
 
     }

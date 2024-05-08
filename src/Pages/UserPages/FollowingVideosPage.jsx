@@ -19,7 +19,8 @@ function FollowingVideosPage() {
           url: 'https://playtube-app-backend.onrender.com/api/v1/subscriptions/s/:channelId',
           data: {
             'channelId': userData.data._id
-          }
+          },
+          withCredentials: true
         })
         if (response) {
           const Following = response.data.data
@@ -29,7 +30,8 @@ function FollowingVideosPage() {
               url: 'https://playtube-app-backend.onrender.com/api/v1/videos/user',
               data: {
                 'userId': follow._id
-              }
+              },
+              withCredentials: true
             }).then(response => {
               setVideos(response.data.data)
             }

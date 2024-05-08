@@ -18,7 +18,8 @@ function Videos({channelData}) {
                     url:'https://playtube-app-backend.onrender.com/api/v1/videos/user',
                     data:{
                         'userId': channelData._id
-                    }
+                    },
+                    withCredentials: true
                 })
                 if(response){
             setVideos(response.data.data)

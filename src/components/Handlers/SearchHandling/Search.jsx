@@ -18,7 +18,11 @@ const Search = () => {
     const HandleSearch = async (value) => {
         if (value.trim() !== '') {
             try {
-                const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/videos/suggestions?query=${value}`);
+                const response = await axios({
+                    method:'GET',
+                    url: `https://playtube-app-backend.onrender.com/api/v1/videos/suggestions?query=${value}`,
+                    withCredentials: true
+            })
                 const data = response.data.data
                 setSuggestions(data);
                 
@@ -76,8 +80,8 @@ const Search = () => {
               placeholder="Search..."
                className="search-input h-12 w-full border p-2 border-gray-500 rounded-2xl mr-2 " />
             <button type='submit'
-            className="h-11 w-14  bg-gray-300 rounded-full ">
-              <BiSearchAlt2 className='size-4 mx-auto' /></button>
+            className="h-12 w-14 bg-gray-200 rounded-full hover:bg-gray-300">
+              <BiSearchAlt2 className='size-5 mx-auto' /></button>
         </form>
         { suggestions?.length > 0 &&
             <ul ref={suggestionsRef}  

@@ -17,7 +17,8 @@ function VideoCard({ _id, title, thumbnail, owner, views, createdAt, updatedAt ,
         url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
         data: {
           userId: owner
-        }
+        },
+        withCredentials: true
       }).then((response) => {
         if (response) {
           const userData = response.data.data

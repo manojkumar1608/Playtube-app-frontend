@@ -36,7 +36,8 @@ const TweetFormCard = () => {
          url: 'https://playtube-app-backend.onrender.com/api/v1/tweets/',
          data: {
            'content': data.tweetContent
-         }
+         },
+         withCredentials: true
         })
          if (tweetdata) {
            reset()

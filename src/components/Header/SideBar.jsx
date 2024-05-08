@@ -34,7 +34,8 @@ function SideBar() {
             url: 'https://playtube-app-backend.onrender.com/api/v1/subscriptions/s/:channelId',
             data: {
               'channelId': userData.data._id
-            }
+            },
+            withCredentials: true
           })
           if (response) {
             setFollowing(response.data.data)

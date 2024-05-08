@@ -39,7 +39,8 @@ function UploadVideo({ video }) {
                     },
                     headers: {
                         'Content-Type': 'multipart/form-data'
-                    }
+                    },
+                    withCredentials: true
                 }) : null;
                 if (file) {
                     const videoId = file.data.data.updatedvideoDetails._id
@@ -58,15 +59,14 @@ function UploadVideo({ video }) {
                     },
                     headers: {
                         'Content-Type': 'multipart/form-data'
-                    }
+                    },
+                    withCredentials: true
                 })
                 const videoId = videoData.data.data.videoPublish._id
                 if (videoId) {
                     setLoading(false)
                     navigate(`/watch/${videoId}`)
-
                 }
-
             }
         } catch (error) {
             setError(error.response.statusText + ' ' + 'Something went wrong')

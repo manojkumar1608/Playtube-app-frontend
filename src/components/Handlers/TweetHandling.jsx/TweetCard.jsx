@@ -28,7 +28,8 @@ function TweetCard({ tweet, onUpdate, onDelete }) {
         url: 'https://playtube-app-backend.onrender.com/api/v1/users/getuserbyId',
         data: {
           userId: owner
-        }
+        },
+        withCredentials: true
       }).then((response) => {
         if (response) {
           const userData = response.data.data
@@ -50,7 +51,8 @@ function TweetCard({ tweet, onUpdate, onDelete }) {
         url: `https://playtube-app-backend.onrender.com/api/v1/tweets/${tweet._id}`,
         data: {
           'newContent': data.tweetContent
-        }
+        },
+        withCredentials: true
       })
       if (tweetData) {
         const updatedTweets = tweetData.data.data

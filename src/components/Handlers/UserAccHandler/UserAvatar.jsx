@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RiImageEditFill } from "react-icons/ri";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-function UserAvatar({ channelData }) {
+function UserAvatar({ channelData , onUpdate}) {
   const { register, handleSubmit } = useForm()
   const cuurentuser = useSelector((state) => state.auth.userData)
   const avatar = channelData?.avatar.url
@@ -31,11 +31,12 @@ function UserAvatar({ channelData }) {
       },
       headers: {
         'Content-Type': 'multipart/form-data'
-      }
+      },
+      withCredentials: true
     })
     if (response) {
       setShowModal(false)
-      window.location.reload()
+      onUpdate(response.data.data)
     }
   }
   return (

@@ -34,10 +34,13 @@ function App() {
   
   const RefreshAccessToken = async () => {
     try {
-        const response = await axios.post('https://playtube-app-backend.onrender.com/api/v1/users/refresh-token', {
-          refreshToken: localStorage.getItem('refreshToken')
-        });
-
+      const response = await axios({
+        method: "POST",
+        url :'https://playtube-app-backend.onrender.com/api/v1/users/refresh-token', 
+        data:{refreshToken: localStorage.getItem('refreshToken')},
+        withCredentials: true
+        
+      });
         const { accessToken, refreshToken } = response.data.data;
         
         // Update tokens in localStorage

@@ -9,8 +9,9 @@ import Button from '../components/utilities/Button'
 import LoadingTweetCard from '../components/utilities/LoadingTweetCard'
 
 function TweetsPage() {
+    
     const userData = useSelector((state) => state.auth.userData)
-    const { register, handleSubmit, reset, watch, formState } = useForm();
+    const { register, handleSubmit, reset, formState } = useForm();
     const { errors, isDirty, isValid } = formState;
 
 
@@ -24,7 +25,11 @@ function TweetsPage() {
     useEffect(() => {
         async function gettweets() {
             try {
-                const response = await axios.get(`https://playtube-app-backend.onrender.com/api/v1/tweets?page=${currentPage}`)
+                const response = await axios({
+                    method: 'GET',
+                    url:`https://playtube-app-backend.onrender.com/api/v1/tweets?page=${currentPage}`,
+                    withCredentials: true
+                })
                 const tweetsData = response.data.data
                 if (tweetsData) {
                     settweets((prevTweets) => {
@@ -56,7 +61,11 @@ function TweetsPage() {
     const handleDelete = async (deletedTweet) => {
         try {
             // Delete the tweet from the backend
-            const deletedData = await axios.delete(`https://playtube-app-backend.onrender.com/api/v1/tweets/${deletedTweet?._id}`);
+            const deletedData = await axios({
+                method: 'DELETE',
+                url:`https://playtube-app-backend.onrender.com/api/v1/tweets/${deletedTweet?._id}`,
+                withCredentials: true
+        })
             // Update the state with the deleted tweet removed
             if (deletedData) {
                 settweets(prevTweets => prevTweets.filter(tweet => tweet._id !== deletedTweet._id));
