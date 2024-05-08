@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RiImageEditFill } from "react-icons/ri";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -33,12 +33,11 @@ function UserCoverImage({ channelData, onUpdate }) {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
-            withCredentials: true,
+            withCredentials: true
         })
         if (response) {
             setShowModal(false)
             onUpdate(response.data.data)
-            
         }
 
     }
@@ -53,10 +52,10 @@ function UserCoverImage({ channelData, onUpdate }) {
                             src={channelData?.coverImage.url} alt="Cover" />
                         {
                             channelData?._id === cuurentuser?.data?._id &&
-                            <div onClick={() => setShowModal(true)} 
-                            className='absolute right-16 -bottom-1 rounded-xl cursor-pointer bg-gray-100 hover:bg-gray-200 z-20'>
-                               <img className='size-12 '
-                               src="https://cdn-icons-png.flaticon.com/128/8350/8350435.png" alt= {<RiImageEditFill className='size-9'/>} />
+                            <div onClick={() => setShowModal(true)}
+                                className='absolute right-16 -bottom-1 rounded-xl cursor-pointer bg-gray-100 hover:bg-gray-200 z-20'>
+                                <img className='size-12 '
+                                    src="https://cdn-icons-png.flaticon.com/128/8350/8350435.png" alt={<RiImageEditFill className='size-9' />} />
                             </div>
                         }
                     </div>
