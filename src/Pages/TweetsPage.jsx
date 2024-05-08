@@ -93,7 +93,8 @@ function TweetsPage() {
                 url: 'https://playtube-app-backend.onrender.com/api/v1/tweets/',
                 data: {
                     'content': data.tweetContent
-                }
+                },
+                withCredentials:true,
             }).then(response => {
                 if (response) {
                     setUpdate(response.data.data)
