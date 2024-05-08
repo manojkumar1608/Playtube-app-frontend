@@ -33,6 +33,8 @@ function Login() {
 
 
             if (session) {
+                localStorage.setItem('accessToken', session.data.data.accessToken);
+                localStorage.setItem('refreshToken', session.data.data.refreshToken);
                 const userData  = await axios({
                     method: 'GET',
                     url:'https://playtube-app-backend.onrender.com/api/v1/users/current-user',

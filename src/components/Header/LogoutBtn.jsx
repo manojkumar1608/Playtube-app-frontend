@@ -11,12 +11,15 @@ function LogoutBtn() {
     const res = await axios({
       method: 'POST',
       url: 'https://playtube-app-backend.onrender.com/api/v1/users/logout',
-      withCredentials:true,
+      withCredentials: true,
 
     })
-    if (res)
+    if (res) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       dispatch(authlogout())
-    navigate('/')
+      navigate('/')
+    }
   }
 
   return (
