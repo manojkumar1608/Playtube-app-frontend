@@ -56,7 +56,7 @@ function TweetsPage() {
     const handleDelete = async (deletedTweet) => {
         try {
             // Delete the tweet from the backend
-            const deletedData = await axios.delete(`/api/v1/tweets/${deletedTweet?._id}`);
+            const deletedData = await axios.delete(`https://playtube-app-backend.onrender.com/api/v1/tweets/${deletedTweet?._id}`);
             // Update the state with the deleted tweet removed
             if (deletedData) {
                 settweets(prevTweets => prevTweets.filter(tweet => tweet._id !== deletedTweet._id));
@@ -90,7 +90,7 @@ function TweetsPage() {
         if (userData) {
             axios({
                 method: 'POST',
-                url: '/api/v1/tweets/',
+                url: 'https://playtube-app-backend.onrender.com/api/v1/tweets/',
                 data: {
                     'content': data.tweetContent
                 }
