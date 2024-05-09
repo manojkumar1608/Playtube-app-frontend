@@ -72,7 +72,7 @@ return loading ? (
     <div>
         {error && <p className=" text-[#f90909]  bg-gray-200 rounded-xl mt-1 mb-2 text-center text-lg font-mono">{error}</p>}
 
-        {channelData?.coverImage &&
+        {channelData?.coverImage.url &&
             <div className='relative'>
                 <div className='w-[67rem] h-40 mx-11 mt-2 mb-1 rounded-xl border border-gray-200'>
                     <img className="object-cover w-full h-full rounded-xl z-10"
