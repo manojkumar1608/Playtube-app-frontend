@@ -48,7 +48,7 @@ function WatchPage() {
     })
         .then((response) => {
         }).catch((error) => {
-          setError("Failed to toggle", error)
+          setError("Something went try Refreshing", error)
         });
     }
     const Timeout = setTimeout(() =>{
@@ -66,8 +66,7 @@ function WatchPage() {
     <>
 {
   loading ? (<LoadingWatchPage/>):(
-
-      <div className='flex flex-col md:flex-row'>
+    <div className='flex flex-col md:flex-row'>
         {/* Video Player Section */}
         <div className='flex flex-col md:w-47rem'>
           <video className='rounded-2xl mt-2 w-[47.7rem] h-auto md:h-[27rem]'

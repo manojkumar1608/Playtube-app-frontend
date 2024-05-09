@@ -49,6 +49,11 @@ function UserAccDetails({ channelData , onUpdate}) {
         setLoading(false)
        }
     }
+    if (error) {
+        setTimeout(() => {
+            setError(false)
+        }, 5000)
+    }
     return loading ? ( <div className="w-full h-[32rem] flex justify-center items-center ">
     <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
       <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>

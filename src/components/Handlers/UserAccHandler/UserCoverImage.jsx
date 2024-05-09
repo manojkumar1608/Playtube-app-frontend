@@ -7,12 +7,12 @@ import axios from 'axios';
 
 function UserCoverImage({ channelData, onUpdate }) {
     const currentuser = useSelector((state) => state.auth.userData)
+    const coverImage = channelData?.coverImage.url;
     const { register, handleSubmit } = useForm()
     const [profilePic, setProfilePic] = useState(coverImage);
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
-    const coverImage = channelData?.coverImage.url;
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -50,7 +50,11 @@ function UserCoverImage({ channelData, onUpdate }) {
             setLoading(false)
         }
     }
-
+    if (error) {
+        setTimeout(() => {
+            setError(false)
+        }, 5000)
+    }
 
     return loading ? (
         <div className="w-full h-[32rem] flex justify-center items-center ">

@@ -59,7 +59,7 @@ function HomePage() {
     return (
         <>
             <div className='flex flex-wrap ml-3.5'>
-                {error && <p className='text-gray-700 text-center text-3xl font-bold'>{error}</p>}
+            {error && <p className='text-center text-[#f90909] bg-gray-300 rounded-xl mt-6 mb-2  text-xl font-mono'>{error}</p>}
                 {videos.map((video, index) => (
                     loading ? (
                         <div key={`loading-${index}`}>

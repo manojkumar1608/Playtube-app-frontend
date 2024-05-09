@@ -76,6 +76,11 @@ function YourAccount() {
     setUpdate(response.data.data)
   }
 }
+if (error) {
+  setTimeout(() => {
+      setError(false)
+  }, 5000)
+}
 
   return loading ?(
     <LoadingUserChannel/>
@@ -83,7 +88,7 @@ function YourAccount() {
     <div>
     { channelData ?(
       <div>
-        {error && <p className='text-center text-3xl font-bold'>{error}</p>}
+        {error && <p className='text-center text-[#f90909] bg-gray-300 rounded-xl mt-6 mb-2  text-xl font-mono'>{error}</p>}
       
       <UserCoverImage channelData={channelData} onUpdate={HandleUpdate}/>
       
