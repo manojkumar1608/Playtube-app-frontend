@@ -64,7 +64,7 @@ function SideBar() {
 
               {/* logo */}
               <a className="flex flex-row " href='/'>
-                <img className='h-[2rem] w-[2re] ml-3  '
+                <img className='h-[2rem] w-[2rem] ml-3  '
                   src="https://cdn-icons-png.flaticon.com/512/8894/8894556.png" alt="videoTube" />
                 <h3 className='font-bold' >PlayTube</h3>
               </a>
@@ -101,21 +101,21 @@ function SideBar() {
                 <MdKeyboardDoubleArrowRight className="size-6 mt-1 ml-1" />
               </div>
 
-              <Link to={`/user/${userData?.data.username}`} className="">
+              <Link to={`/user/${userData?.data.username}`} >
                 <li className="py-2 flex  pl-2 font-semibold hover:bg-gray-300 rounded-lg">
                   <VscAccount className="mr-5 mt-1 text-xl" />
                   Your channel
                 </li>
               </Link>
 
-              <Link to={'/LikedVideos'} className=" ">
+              <Link to={'/LikedVideos'} >
                 <li className="py-2 flex pl-2 font-semibold hover:bg-gray-300 rounded-lg">
                   <AiOutlineLike className="mr-5 mt-1 text-xl" />
                   Liked videos
                 </li>
               </Link>
 
-              <Link to={`/user/${userData?.data.username}`} className="">
+              <Link to={`/user/${userData?.data.username}`}>
                 <li className="py-2 flex pl-2 font-semibold  hover:bg-gray-300 rounded-lg">
                   <GoVideo className="mr-5 mt-1 text-xl" />
                   Your videos

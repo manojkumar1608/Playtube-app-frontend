@@ -50,13 +50,13 @@ function TweetlikeHandler({ tweet }) {
 
     const LikeHandler = async () => {
         setError("")
-        try {
+        
+            if(!userData){
+                setError("Login to Like/DisLike")
+            }else{
+                try{
             if (tweet._id) {
-                await axios({
-                    method: "POST",
-                    url: `https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`,
-                    withCredentials: true
-            })
+                await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`)
                     .then(response => {
                         const res = response.data.data
                         setChange(res)
@@ -65,9 +65,11 @@ function TweetlikeHandler({ tweet }) {
                         setDisLike(false)
                     }
             }
+        
         } catch (error) {
-            setError( " Login to Like/DisLike")
+            setError( " Something went wrong")
         }
+    }
 
     }
     if (error) {

@@ -13,6 +13,7 @@ import UserCoverImage from './UserCoverImage.jsx'
 import UserAccDetails from './UserAccDetails.jsx'
 import ChangePasswordBtn from './ChangePasswordBtn.jsx'
 import LoadingUserChannel from '../../utilities/LoadingUserChannel.jsx'
+import { login } from '../../../store/authSlice.js'
 
 function YourAccount() {
   const cuurentuser = useSelector((state) => state.auth.userData)
@@ -30,7 +31,7 @@ function YourAccount() {
   useEffect(() => {
     async function getchannel() {
       try {
-        const channelData = await axios({
+        const response = await axios({
           method: 'POST',
           url: 'https://playtube-app-backend.onrender.com/api/v1/users/c/username',
           data: {
@@ -39,8 +40,11 @@ function YourAccount() {
           },
           withCredentials:true
         })
-        if (channelData) {
-          setChannelData(channelData.data.data)
+        if (response) {
+          setChannelData(response.data.data)
+        }
+        if(channelData?._id === cuurentuser?.data?._id){
+          dispatch(login(response.data))
         }
 
       } catch (error) {
