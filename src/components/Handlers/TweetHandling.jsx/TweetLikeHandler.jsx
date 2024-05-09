@@ -56,7 +56,11 @@ function TweetlikeHandler({ tweet }) {
             }else{
                 try{
             if (tweet._id) {
-                await axios.post(`https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`)
+                await axios({
+                    method: "POST",
+                    url: `https://playtube-app-backend.onrender.com/api/v1/likes/toggle/t/${tweet._id}`,
+                    withCredentials: true,
+            })
                     .then(response => {
                         const res = response.data.data
                         setChange(res)

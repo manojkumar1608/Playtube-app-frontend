@@ -15,36 +15,55 @@ function UserAccDetails({ channelData , onUpdate}) {
         }
     })
     const navigate = useNavigate()
-    const cuurentuser = useSelector((state) => state.auth.userData)
+    const currentuser = useSelector((state) => state.auth.userData)
     const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
 
     const Submit = async (data) => {
-        const response = await axios({
-            method: 'PATCH',
-            url: 'https://playtube-app-backend.onrender.com/api/v1/users/update-account',
-            data: {
-                'username': data.username,
-                'fullName': data.fullName,
-                'email': data.email
-            },
-            withCredentials: true
-          
-        })
-        if (response) {
-            if(response){
-                setShowModal(false)
-                const username = response.data.data.username
-                navigate(`/user/${username}`)
-                onUpdate(response.data.data)
-        }
-        }
+        setError("")
+        setLoading(true)
+       try {
+         const response = await axios({
+             method: 'PATCH',
+             url: 'https://playtube-app-backend.onrender.com/api/v1/users/update-account',
+             data: {
+                 'username': data.username,
+                 'fullName': data.fullName,
+                 'email': data.email
+             },
+             withCredentials: true
+           
+         })
+         if (response) {
+             if(response){
+                 setShowModal(false)
+                 const username = response.data.data.username
+                 navigate(`/user/${username}`)
+                 onUpdate(response.data.data)
+         }
+         }
+       } catch (error) {
+        setError("Something went wrong while updating your details")
+       } finally {
+        setLoading(false)
+       }
     }
-    return channelData && (
+    return loading ? ( <div className="w-full h-[32rem] flex justify-center items-center ">
+    <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
+      <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>
+
+      <p className="text-lg text-gray-700 font-semibold">Updating your details </p>
+      <p className="text-gray-500">Please wait while we update your account details</p>
+    </div>
+  </div>):
+     channelData && (
         <div className=''>
+             {error && <p className=" text-[#f90909]  bg-gray-200 rounded-xl mt-1 mb-2 text-center text-lg font-mono">{error}</p>}
             <div className='flex flex-row'>
                 <p className=" text-3xl font-bold ">{channelData?.username}   </p>
                 {
-                    channelData?._id === cuurentuser?.data?._id &&
+                    channelData?._id === currentuser?.data?._id &&
                     <div className='cursor-pointer hover:bg-gray-100 rounded-xl ' onClick={() => setShowModal(true)}>
                    <img className='size-9 ml-3 mr-2 mt-0.5'
                     src="https://cdn-icons-png.flaticon.com/128/2807/2807960.png" alt={<RiImageEditFill className='size-8'/>} />

@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import { RiImageEditFill } from "react-icons/ri";
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-function UserAvatar({ channelData , onUpdate}) {
+function UserAvatar({ channelData, onUpdate }) {
   const { register, handleSubmit } = useForm()
-  const cuurentuser = useSelector((state) => state.auth.userData)
+  const currentuser = useSelector((state) => state.auth.userData)
   const avatar = channelData?.avatar.url
   const [profilePic, setProfilePic] = useState(avatar);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -23,33 +25,50 @@ function UserAvatar({ channelData , onUpdate}) {
   };
 
   const Submit = async (data) => {
-    const response = await axios({
-      method: 'PATCH',
-      url: 'https://playtube-app-backend.onrender.com/api/v1/users/avatar',
-      data: {
-        'avatarfile': data.avatar[0]
-      },
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      },
-      withCredentials: true
-    })
-    if (response) {
-      setShowModal(false)
-      onUpdate(response.data.data)
+    setLoading(true)
+    try {
+      const response = await axios({
+        method: 'PATCH',
+        url: 'https://playtube-app-backend.onrender.com/api/v1/users/avatar',
+        data: {
+          'avatarfile': data.avatar[0]
+        },
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        withCredentials: true
+      })
+      if (response) {
+        setShowModal(false)
+        onUpdate(response.data.data)
+      }
+    } catch (error) {
+      setError("Something went wrong while updating avatar image")
+    } finally {
+    setLoading(false)
     }
   }
-  return (
+  return loading ? (
+    <div className="w-full h-[32rem] flex justify-center items-center ">
+      <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
+        <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>
+
+        <p className="text-lg text-gray-700 font-semibold">Updating your avatar </p>
+        <p className="text-gray-500">Please wait while we update your avatar image</p>
+      </div>
+    </div>) :
     <div>
+      {error && <p className=" text-[#f90909]  bg-gray-200 rounded-xl mt-1 mb-2 text-center text-lg font-mono">{error}</p>}
+
       <div className='relative'>
         <div className=" mr-2 mt-1 rounded-full z-20">
           <img src={channelData?.avatar.url} alt="Avatar" className="w-40 h-40 rounded-full" />
           {
-            channelData?._id === cuurentuser?.data?._id &&
+            channelData?._id === currentuser?.data?._id &&
             <div onClick={() => setShowModal(true)}
               className='absolute bottom-0 right-0 bg-opacity-90 bg-gray-100 font-semibold text-sm rounded-full hover:bg-gray-300 z-30 cursor-pointer'>
               <img className='size-10'
-                src="https://cdn-icons-png.flaticon.com/128/12266/12266279.png" alt={<RiImageEditFill className='size-8'/>} />
+                src="https://cdn-icons-png.flaticon.com/128/12266/12266279.png" alt={<RiImageEditFill className='size-8' />} />
             </div>
           }
         </div>
@@ -91,7 +110,7 @@ function UserAvatar({ channelData , onUpdate}) {
         </div>
       )}
     </div>
-  )
+
 }
 
 export default UserAvatar

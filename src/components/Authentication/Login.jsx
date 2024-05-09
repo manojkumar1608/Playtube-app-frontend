@@ -14,12 +14,13 @@ function Login() {
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     
  
 
     const login = async(data) => {
         setError("")
-       
+       setLoading(true)
         try {
             const session = await axios({
                 method: 'POST',
@@ -30,8 +31,6 @@ function Login() {
                 },
                 withCredentials:true
             })      
-
-
             if (session) {
                 localStorage.setItem('accessToken', session.data.data.accessToken);
                 localStorage.setItem('refreshToken', session.data.data.refreshToken);
@@ -43,12 +42,12 @@ function Login() {
                 if(userData){
                     dispatch(authLogin(userData.data))
                 }
-                navigate("/")
-                
-                    
+                navigate("/") 
             }
         } catch (error) {
             setError(error.response.status)
+        } finally {
+        setLoading(false)
         }
     }
     if(error && error === 400){
@@ -69,7 +68,14 @@ function Login() {
         setError(err) 
     }
 
-  return (
+  return loading ? (<div className="w-full h-[32rem] flex justify-center items-center ">
+  <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
+      <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>
+
+      <p className="text-lg text-gray-700 font-semibold">Fetching your details...</p>
+      <p className="text-gray-500">Please wait while we fetch your details</p>
+  </div>
+</div>):
     <div
     className='flex items-center justify-center w-full mt-2'
     >
@@ -120,7 +126,7 @@ function Login() {
         </form>
         </div>
     </div>
-  )
+  
 }
 
 export default Login

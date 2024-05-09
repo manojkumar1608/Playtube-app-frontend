@@ -11,11 +11,13 @@ import { MdErrorOutline } from "react-icons/md";
 function Signup() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const {register, handleSubmit } = useForm()
 
     const create = async(data) => {
         setError("")
+        setLoading(true)
         try {
             const userData = await axios({
                 method: 'POST',
@@ -39,7 +41,9 @@ function Signup() {
             }
         } catch (error) {
             setError("error")
-        }
+        } finally{
+        setLoading(false)
+    }
     }
     if(error && error === 409){
         const  err = "user with same username or email already exists"
@@ -54,7 +58,15 @@ function Signup() {
         setError(err)
     }
 
-  return (
+  return loading ?(
+  <div className="w-full h-[32rem] flex justify-center items-center ">
+  <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
+      <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>
+
+      <p className="text-lg text-gray-700 font-semibold">Creating an account for you.....</p>
+      <p className="text-gray-500">Please wait while we create your account</p>
+  </div>
+</div>):
     <div className="flex items-center justify-center w-full mt-2">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
             <div className="mb-2 flex justify-center">
@@ -137,7 +149,7 @@ function Signup() {
             </div>
 
     </div>
-  )
+  
 }
 
 export default Signup

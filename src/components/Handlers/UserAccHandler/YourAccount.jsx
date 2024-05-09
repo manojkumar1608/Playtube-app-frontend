@@ -16,7 +16,7 @@ import LoadingUserChannel from '../../utilities/LoadingUserChannel.jsx'
 import { login } from '../../../store/authSlice.js'
 
 function YourAccount() {
-  const cuurentuser = useSelector((state) => state.auth.userData)
+  const currentuser = useSelector((state) => state.auth.userData)
   const [loading, setLoading] = useState(true)
   const [channelData, setChannelData] = useState()
   const [update, setUpdate] = useState()
@@ -36,7 +36,7 @@ function YourAccount() {
           method: 'POST',
           url: 'https://playtube-app-backend.onrender.com/api/v1/users/c/username',
           data: {
-            'userId': cuurentuser?.data._id,// to check current user is following the channel or not
+            'userId': currentuser?.data._id,// to check current user is following the channel or not
             'username': username
           },
           withCredentials:true
@@ -44,7 +44,7 @@ function YourAccount() {
         if (response) {
           setChannelData(response.data.data)
         }
-        if(channelData?._id === cuurentuser?.data?._id){
+        if(channelData?._id === currentuser?.data?._id){
           dispatch(login(response.data))
         }
 
@@ -94,7 +94,7 @@ function YourAccount() {
         <div className='mt-6 '>
           <UserAccDetails channelData={channelData} onUpdate={HandleUpdate} />
           {
-            channelData?._id === cuurentuser?.data._id ? (
+            channelData?._id === currentuser?.data._id ? (
               <div className='mx-1.5'>
                 <ChangePasswordBtn />
               </div>) : (

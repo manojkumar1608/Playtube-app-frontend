@@ -33,12 +33,3 @@ function LoadingUserChannel() {
 }
 
 export default LoadingUserChannel
-{/* <div className="flex items-center mr-8 bg-gray-300">
-          <Skeleton height={24} width={80} className="animate-pulse bg-gray-300" />
-        </div>
-        <div className="flex items-center mr-8">
-          <Skeleton height={24} width={80} className="animate-pulse bg-gray-300" />
-        </div>
-        <div className="flex items-center">
-          <Skeleton height={24} width={180} className="animate-pulse bg-gray-300" />
-        </div> */}
