@@ -17,7 +17,11 @@ function App() {
 
   useEffect(() => {
     setError('')
-    axios.get('https://playtube-app-backend.onrender.com/api/v1/users/current-user')
+    axios({
+      method: 'GET',
+      url: 'https://playtube-app-backend.onrender.com/api/v1/users/current-user',
+      withCredentials: true, 
+    })
     .then((userData) => {
       if (userData) {
         dispatch(login(userData.data))
@@ -47,10 +51,8 @@ function App() {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         
-        // Optionally update state or trigger any other actions
     } catch (error) {
-        console.error('Error refreshing access token:', error);
-        // Handle error (e.g., token expired, unauthorized)
+        dispatch(logout())
     }
   };
   
