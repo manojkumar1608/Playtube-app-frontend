@@ -7,7 +7,7 @@ import Tabs from './Tabs.jsx';
 import axios from 'axios'
 import { BiLogIn } from "react-icons/bi";
 import Button from '../../utilities/Button.jsx'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import UserAvatar from './UserAvatar.jsx'
 import UserCoverImage from './UserCoverImage.jsx'
 import UserAccDetails from './UserAccDetails.jsx'
@@ -22,6 +22,7 @@ function YourAccount() {
   const [update, setUpdate] = useState()
   const [error, setError] = useState()
   const { username } = useParams()
+  const dispatch = useDispatch()
   const tabs = [
     { title: 'Home', content: <UserHomePage channelData={channelData} /> },
     { title: 'Videos', content: <Videos channelData={channelData} /> },
@@ -48,7 +49,7 @@ function YourAccount() {
         }
 
       } catch (error) {
-        setError('Something went wrong Ty Refreshing')
+        setError('Something went wrong Try Refreshing')
 
       }
     }
