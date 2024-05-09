@@ -45,21 +45,23 @@ function UserAvatar({ channelData, onUpdate }) {
     } catch (error) {
       setError("Something went wrong while updating avatar image")
     } finally {
-    setLoading(false)
+      setLoading(false)
     }
   }
   if (error) {
     setTimeout(() => {
-        setError(false)
+      setError(false)
     }, 5000)
-}
-  return loading ? (
-    <div className="w-full h-[32rem] flex justify-center items-center ">
-      <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
-        <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>
+  }
 
-        <p className="text-lg text-gray-700 font-semibold">Updating your avatar </p>
-        <p className="text-gray-500">Please wait while we update your avatar image</p>
+  return loading ? (
+    <div className='fixed top-0 mx-auto left-0 w-full h-full z-50 bg-opacity-70 bg-gray-600 '>
+      <div className="w-full h-[32rem] flex justify-center items-center ">
+        <div className="w-1/3 h-1/3 rounded-xl text-center bg-gray-200 shadow-lg ">
+          <div className="mt-6 animate-spin text-gray-700 text-4xl mb-3 duration-1000">&#9696;</div>
+          <p className="text-lg text-gray-700 font-semibold">Updating your avatar </p>
+          <p className="text-gray-500">Please wait while we update your avatar image</p>
+        </div>
       </div>
     </div>) :
     <div>
