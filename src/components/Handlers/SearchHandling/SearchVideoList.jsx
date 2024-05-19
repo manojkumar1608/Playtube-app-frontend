@@ -33,7 +33,7 @@ const SearchResults = () => {
 
   return (
     <div>
-      <h1>Search Results</h1>
+      <h1 className='font-semibold text-lg'>Search Results :-</h1>
       <ul className='flex flex-wrap'>
         {searchResults.map(result => (
          <div className=''

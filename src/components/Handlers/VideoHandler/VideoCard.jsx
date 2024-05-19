@@ -63,7 +63,7 @@ function VideoCard({ _id, title, thumbnail, owner, views, createdAt, updatedAt ,
     <div className='flex flex-row'>
 
       <Link to={`/user/${user.username}`}>
-    <img src={user.avatar.url} alt="avatar" className="rounded-full w-[2.8rem] h-[2.8rem] mt-1.5 object-cover"/>
+    <img src={user.avatar.url} alt="avatar" className="rounded-full min-w-[2.8rem] h-[2.8rem] mt-1.5 object-cover"/>
       </Link>
        
     <div className="p-2 ml-1">

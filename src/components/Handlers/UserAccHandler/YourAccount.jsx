@@ -50,15 +50,12 @@ function YourAccount() {
 
       } catch (error) {
         setError('Something went wrong Try Refreshing')
-
       }
+      setLoading(false)
     }
     getchannel()
 
-    const Timeout = setTimeout(() => {
-      setLoading(false)
-  }, 1000)
-  return () => clearTimeout(Timeout)
+   
 
   }, [update , username])
 
